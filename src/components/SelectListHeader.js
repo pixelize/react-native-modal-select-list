@@ -60,6 +60,7 @@ class SelectListHeader extends PureComponent {
       disableTextSearch,
       closeButtonText,
       closeButtonComponent,
+      InputComponent,
       headerTintColor,
       buttonTextColor,
     } = this.props;
@@ -81,16 +82,28 @@ class SelectListHeader extends PureComponent {
               </SelectListHeaderCloseButtonText>
             )}
           </SelectListHeaderCloseButton>
-          { !disableTextSearch && (
+          {!disableTextSearch && InputComponent ? (
+            <View style={{ flex: 1 }}>
+              <InputComponent
+                placeholder={placeholder}
+                value={text}
+                onChangeText={(...args) => this.handleChangeText(...args)}
+              />
+            </View>
+          ) : (
             <SelectListHeaderInputContainer>
               <SelectListHeaderInput
                 placeholder={placeholder}
                 value={text}
                 onChangeText={(...args) => this.handleChangeText(...args)}
               />
-              { !!text && (
-                <SelectListHeaderInputClearButton onPress={() => this.clearText()}>
-                  <SelectListHeaderInputClearButtonText>x</SelectListHeaderInputClearButtonText>
+              {!!text && (
+                <SelectListHeaderInputClearButton
+                  onPress={() => this.clearText()}
+                >
+                  <SelectListHeaderInputClearButtonText>
+                    x
+                  </SelectListHeaderInputClearButtonText>
                 </SelectListHeaderInputClearButton>
               )}
             </SelectListHeaderInputContainer>
@@ -104,7 +117,8 @@ class SelectListHeader extends PureComponent {
 SelectListHeader.defaultProps = {
   placeholder: null,
   closeButtonText: 'Close',
-  closeButtonComponent: false,
+  closeButtonComponent: null,
+  InputComponent: null,
   headerTintColor: null,
   buttonTextColor: null,
 };

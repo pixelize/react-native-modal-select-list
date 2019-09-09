@@ -27,6 +27,7 @@ class SelectList extends PureComponent {
       placeholder,
       closeButtonText,
       closeButtonComponent,
+      InputComponent,
       onCloseModalRequest,
       onRowSelected,
       options,
@@ -44,6 +45,7 @@ class SelectList extends PureComponent {
           placeholder={placeholder}
           closeButtonText={closeButtonText}
           closeButtonComponent={closeButtonComponent}
+          InputComponent={InputComponent}
           disableTextSearch={disableTextSearch}
           onCloseModalRequest={onCloseModalRequest}
           onHeaderInputChangeText={(...args) => this.handleHeaderInputChangeText(...args)}
@@ -67,7 +69,8 @@ class SelectList extends PureComponent {
 SelectList.defaultProps = {
   placeholder: null,
   closeButtonText: null,
-  closeButtonComponent: false,
+  closeButtonComponent: null,
+  InputComponent: null,
   disableTextSearch: false,
   headerTintColor: null,
   buttonTextColor: null,
